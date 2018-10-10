@@ -5,6 +5,7 @@
 #include "Animation.h"
 #include "Globals.h"
 
+
 struct SDL_Texture;
 
 class ModuleSceneKen : public Module
@@ -22,8 +23,14 @@ public:
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect ground;
 	SDL_Rect background;
+	SDL_Rect foreground;
 	Animation flag;
+	Animation girl;
+
 	bool music = false;
+
+private:
+	int floatation;
 };
 
 #endif // __MODULESCENEKEN_H__

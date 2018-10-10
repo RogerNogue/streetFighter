@@ -61,6 +61,7 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	// TODO 9: Draw the player with its animation
+	App->renderer->Blit(graphics, position.x, position.y, &(idle.GetCurrentFrame()), 1.0f);
 	// make sure to detect player movement and change its
 	// position while cycling the animation(check Animation.h)
 

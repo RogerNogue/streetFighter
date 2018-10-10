@@ -41,7 +41,7 @@ enum update_status
 #define FULLSCREEN false
 #define VSYNC true
 #define BORDERLESS false
-#define RESIZABLE false
+#define RESIZABLE true
 #define FULLSCREEN_DESKTOP false
 #define TITLE "Super Street Person"
 
