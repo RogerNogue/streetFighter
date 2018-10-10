@@ -45,6 +45,8 @@ bool ModuleAudio::Init()
 		ret = false;
 	}
 
+	Mix_Volume(-1, volume);
+
 	return ret;
 }
 
@@ -142,7 +144,6 @@ unsigned int ModuleAudio::LoadFx(const char* path)
 bool ModuleAudio::PlayFx(unsigned int id, int repeat)
 {
 	bool ret = false;
-
 	if(id < fx.size())
 	{
 		Mix_PlayChannel(-1, fx[id], repeat);
