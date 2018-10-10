@@ -50,8 +50,10 @@ bool ModuleSceneKen::Start()
 
 	// TODO 7: Enable the player module
 	// TODO 0: trigger background music
+	unsigned int song = App->audio->LoadFx("ken.ogg");
+	music = App->audio->PlayFx(song, 99);
 	
-	return true;
+	return music;
 }
 
 // UnLoad assets

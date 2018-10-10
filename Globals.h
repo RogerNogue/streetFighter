@@ -40,6 +40,9 @@ enum update_status
 #define SCREEN_SIZE 2
 #define FULLSCREEN false
 #define VSYNC true
-#define TITLE "Super Awesome Game"
+#define BORDERLESS false
+#define RESIZABLE false
+#define FULLSCREEN_DESKTOP false
+#define TITLE "Super Street Person"
 
 #endif //__GLOBALS_H__

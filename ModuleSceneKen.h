@@ -23,6 +23,7 @@ public:
 	SDL_Rect ground;
 	SDL_Rect background;
 	Animation flag;
+	bool music = false;
 };
 
 #endif // __MODULESCENEKEN_H__
