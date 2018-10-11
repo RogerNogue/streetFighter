@@ -57,7 +57,7 @@ bool ModuleSceneKen::Start()
 	graphics = App->textures->Load("ken_stage.png");
 
 	// TODO 7: Enable the player module
-	//App->fade->FadeToBlack(App->player, nullptr, 3.0f);//not enabling player
+	App->player->Enable();
 
 	// TODO 0: trigger background music
 	unsigned int song = App->audio->LoadFx("Stereo_Sayan.ogg");

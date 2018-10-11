@@ -9,8 +9,12 @@
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 ModulePlayer::ModulePlayer(bool start_enabled) : Module(start_enabled)
 {
+	/*
 	position.x = 100;
 	position.y = 216;
+	*/
+	position.x = 50;
+	position.y = 116;
 
 	// idle animation (arcade sprite sheet)
 	idle.frames.push_back({7, 14, 60, 90});
@@ -21,13 +25,22 @@ ModulePlayer::ModulePlayer(bool start_enabled) : Module(start_enabled)
 	idle.speed = 0.2f;
 	
 	// walk backward animation (arcade sprite sheet)
-	backward.frames.push_back({542, 131, 61, 87});
-	backward.frames.push_back({628, 129, 59, 90});
-	backward.frames.push_back({713, 128, 57, 90});
-	backward.frames.push_back({797, 127, 57, 90});
-	backward.frames.push_back({883, 128, 58, 91});
-	backward.frames.push_back({974, 129, 57, 89});
+	backward.frames.push_back({ 542, 131, 61, 87 });
+	backward.frames.push_back({ 628, 129, 59, 90 });
+	backward.frames.push_back({ 713, 128, 57, 90 });
+	backward.frames.push_back({ 797, 127, 57, 90 });
+	backward.frames.push_back({ 883, 128, 58, 91 });
+	backward.frames.push_back({ 974, 129, 57, 89 });
 	backward.speed = 0.1f;
+
+	// walk backward animation (arcade sprite sheet)
+	forward.frames.push_back({ 9, 136, 53, 83 });
+	forward.frames.push_back({ 78, 131, 60, 88 });
+	forward.frames.push_back({ 162, 128, 64, 91 });
+	forward.frames.push_back({ 259, 128, 63, 90 });
+	forward.frames.push_back({ 352, 128, 54, 91 });
+	forward.frames.push_back({ 432, 131, 50, 89 });
+	forward.speed = 0.1f;
 
 	// TODO 8: setup the walk forward animation from ryu4.png
 }
@@ -43,6 +56,8 @@ bool ModulePlayer::Start()
 	LOG("Loading player");
 
 	graphics = App->textures->Load("ryu4.png"); // arcade version
+
+	currentAnimation = &idle;//starting with an idle character
 
 	return true;
 }
@@ -61,7 +76,7 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update()
 {
 	// TODO 9: Draw the player with its animation
-	App->renderer->Blit(graphics, position.x, position.y, &(idle.GetCurrentFrame()), 1.0f);
+	App->renderer->Blit(graphics, position.x, position.y, &((*currentAnimation).GetCurrentFrame()), 1.0f);
 	// make sure to detect player movement and change its
 	// position while cycling the animation(check Animation.h)
 
