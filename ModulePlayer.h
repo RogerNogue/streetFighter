@@ -26,6 +26,7 @@ public:
 	Animation forward;
 	Animation* currentAnimation;
 	iPoint position;
+	float speed;
 };
 
 #endif // __MODULEPLAYER_H__
