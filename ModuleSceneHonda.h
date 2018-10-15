@@ -1,5 +1,5 @@
-#ifndef __MODULESCENEKEN_H__
-#define __MODULESCENEKEN_H__
+#ifndef __MODULESCENEHONDA_H__
+#define __MODULESCENEHONDA_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -7,29 +7,22 @@
 
 struct SDL_Texture;
 
-class ModuleSceneKen : public Module
+class ModuleSceneHonda : public Module
 {
 public:
-	ModuleSceneKen( bool start_enabled = true);
-	~ModuleSceneKen();
+	ModuleSceneHonda(bool start_enabled = true);
+	~ModuleSceneHonda();
 
 	bool Start();
 	update_status Update();
 	bool CleanUp();
 
-public:
-	
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect ground;
 	SDL_Rect background;
 	SDL_Rect foreground;
-	Animation flag;
-	Animation girl;
 
 	bool music = false;
-
-private:
-	int floatation;
 };
 
-#endif // __MODULESCENEKEN_H__
+#endif // __MODULESCENEHONDA_H__

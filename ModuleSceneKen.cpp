@@ -103,6 +103,9 @@ update_status ModuleSceneKen::Update()
 
 	// TODO 11: Make that pressing space triggers a switch to honda logic module
 	// using FadeToBlack module
+	if (App->input->GetKey(SDL_SCANCODE_KP_SPACE)) {
+		//App->fade->FadeToBlack(App->scene_honda, App->scene_ken);
+	}
 
 	++floatation;
 
