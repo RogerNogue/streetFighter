@@ -90,11 +90,11 @@ update_status ModuleSceneKen::Update()
 	App->renderer->Blit(graphics, 560, 8, &(flag.GetCurrentFrame()), 3.0f); // flag animation
 
 	// TODO 3: Draw the ship. Be sure to tweak the speed.
-	App->renderer->Blit(graphics, 0, sin(floatation/15)*10, &foreground, 2.0f);
+	App->renderer->Blit(graphics, 0, sin(floatation/15)*5, &foreground, 2.0f);
 
 	// TODO 6: Draw the girl. Make sure it follows the ship movement!
 	//193, 104
-	App->renderer->Blit(graphics, 193, 104 + sin(floatation/15)*10, &(girl.GetCurrentFrame()), 2.0f);
+	App->renderer->Blit(graphics, 193, 104 + sin(floatation/15)*5, &(girl.GetCurrentFrame()), 2.0f);
 
 	App->renderer->Blit(graphics, 0, 170, &ground);
 	
@@ -103,9 +103,6 @@ update_status ModuleSceneKen::Update()
 
 	// TODO 11: Make that pressing space triggers a switch to honda logic module
 	// using FadeToBlack module
-	if (App->input->GetKey(SDL_SCANCODE_KP_SPACE)) {
-		//App->fade->FadeToBlack(App->scene_honda, App->scene_ken);
-	}
 
 	++floatation;
 

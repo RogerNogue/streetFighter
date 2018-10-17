@@ -20,7 +20,10 @@ public:
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect ground;
 	SDL_Rect background;
-	SDL_Rect foreground;
+	SDL_Rect roof;
+	SDL_Rect pool;
+	SDL_Rect towel;
+	Animation water;
 
 	bool music = false;
 };

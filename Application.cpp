@@ -70,6 +70,10 @@ update_status Application::Update()
 		if((*it)->IsEnabled() == true) 
 			ret = (*it)->PostUpdate();
 
+	if (input->GetKey(SDL_SCANCODE_SPACE)) {
+		fade->FadeToBlack(scene_honda, scene_ken);
+	}
+
 	return ret;
 }
 
