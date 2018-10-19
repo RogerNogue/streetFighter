@@ -15,6 +15,9 @@ ModulePlayer::ModulePlayer(bool start_enabled) : Module(start_enabled)
 	*/
 	position.x = 50;
 	position.y = 116;
+	floor = 116;
+	inAir = false;
+	flyingSpeed = 0;
 
 	// idle animation (arcade sprite sheet)
 	idle.frames.push_back({7, 14, 60, 90});
@@ -41,6 +44,15 @@ ModulePlayer::ModulePlayer(bool start_enabled) : Module(start_enabled)
 	forward.frames.push_back({ 352, 128, 54, 91 });
 	forward.frames.push_back({ 432, 131, 50, 89 });
 	forward.speed = 0.1f;
+
+	jump.frames.push_back({ 17, 847, 55, 85 });
+	jump.frames.push_back({ 100, 823, 56, 104 });
+	jump.frames.push_back({ 176, 805, 50, 89 });
+	jump.frames.push_back({ 251, 798, 54, 77 });
+	jump.frames.push_back({ 327, 813, 48, 70 });
+	jump.frames.push_back({ 397, 810, 48, 89 });
+	jump.frames.push_back({ 464, 819, 55, 109 });
+	jump.speed = 0.075f;
 	
 }
 
@@ -76,18 +88,37 @@ bool ModulePlayer::CleanUp()
 // Update
 update_status ModulePlayer::Update()
 {
-
-	if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT){
-		App->renderer->camera.x += speed;
-		position.x -= speed;
-		currentAnimation = &backward;
+	if (inAir) {
+		position.y += flyingSpeed;
+		//if (position.y <= floor) {
+		if (position.y >= floor) {
+			//reset the values
+			position.y = floor;
+			inAir = false;
+			flyingSpeed = 0;
+			currentAnimation = &idle;
+		}
+		flyingSpeed += 0.1;
 	}
-	else if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-		App->renderer->camera.x -= speed;
-		position.x += speed;
-		currentAnimation = &forward;
+	else {
+		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+			App->renderer->camera.x += speed;
+			position.x -= speed;
+			currentAnimation = &backward;
+		}
+		else if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+			App->renderer->camera.x -= speed;
+			position.x += speed;
+			currentAnimation = &forward;
+		}
+		else if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
+			//jump
+			inAir = true;
+			flyingSpeed = -4;
+			currentAnimation = &jump;
+		}
+		else currentAnimation = &idle;
 	}
-	else currentAnimation = &idle;
 	// TODO 9: Draw the player with its animation
 	App->renderer->Blit(graphics, position.x, position.y, &((*currentAnimation).GetCurrentFrame()), 1.0f);
 	// make sure to detect player movement and change its

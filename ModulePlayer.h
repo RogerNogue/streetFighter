@@ -24,9 +24,13 @@ public:
 	Animation idle;
 	Animation backward;
 	Animation forward;
+	Animation jump;
 	Animation* currentAnimation;
 	iPoint position;
 	float speed;
+	float floor;
+	bool inAir;
+	float flyingSpeed;
 };
 
 #endif // __MODULEPLAYER_H__
